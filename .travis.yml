@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true bcrivelaro/dockerized-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'dockerized-react'
+  env: 'DockerizedReact-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-729354916127'
+  bucket_path: 'dockerized-react'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
